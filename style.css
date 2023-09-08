@@ -2,11 +2,14 @@
     background-color: lightgray;
 }
 
+h1 {
+    color:green;
+    background-color:blanchedalmond;
+}
+
 .weatherContainer {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: fit-content;
+    flex-direction:column;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif blue;
 
 }
@@ -17,5 +20,14 @@
     padding: 20px;
     width: 200px;
     color: green;
+    font-weight: 800;
+    margin-top: 20px;
     
+}
+
+#cityName  {
+    font-size: large;
+    width: 200px;
+    padding: 20px 10px;
+
 }
