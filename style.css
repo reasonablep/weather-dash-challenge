@@ -1,0 +1,21 @@
+*{
+    background-color: lightgray;
+}
+
+.weatherContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: fit-content;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif blue;
+
+}
+
+#getWeather {
+
+    display: inline-block;
+    padding: 20px;
+    width: 200px;
+    color: green;
+    
+}
