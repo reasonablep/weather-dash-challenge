@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Weather Widget!</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<section class= "weatherContainer">
-<h1>Peter's Dynamic Weather Service</h1>
-</strong>
-<input type="text" id="cityName" placeholder="Enter the city name.">
-</strong>
-<button id="getWeather">Press to get the weather!</button>
-</section>
-<div id ="response-text"></div>
+    <div class ="container"></div>
+    <section class="weather-container">
+        <h1>Peter's Dynamic Weather Service</h1>
+        <input type="text" id="city-name" placeholder="Enter the city name.">
+        <button id="get-weather">Press to get the weather!</button>
+    </section>
+    <div class = "weather-data"></div>
+    <div id="response-text"></div>
+    <div id="forecast"></div>
+    <div id="weather-info">
+        <div id="weather-icon">
+        </div>
+        <div>Temperature <span id= "temperature"></span></div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
