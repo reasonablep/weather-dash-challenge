@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const apiKey = 'WeatherAPI';
+        const apiKey = 'c3ae464095c2e4d49982c37fea88fd86';
         const weatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=c3ae464095c2e4d49982c37fea88fd86&units=imperial`;
 
 
