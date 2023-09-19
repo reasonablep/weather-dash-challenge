@@ -36,60 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     displayForecast(data.list)
 
-                    function displayForecast (forecastData) {
-
-                        const forecastContainer = document.getElementById('forecast');
-                        forecastContainer.innerHTML(" ");
-
-                    forecastData.forEach((forecastItem) => {
-                        const timeStamp = forecastItem.dt;
-                        const date = new date (timeStamp);
-                        const temperature = forecastItem.main.temp;
-                        const weatherIconCode = forecastItem.weather[0].icon;
-
-                        const forecastItemDiv = document.createElement('div');
-                        forecastItemDiv.className =  'forecast-item';
-                    }
-
-                    const forecastDate = document.createElement ('p');
-                    forecastDate.textContent = formatDate (date);
-
-                    const forecastTemp = document.createElement ('p');
-                    forecastTemp.textContent = temperature + 'F';
-
-                    const weatherIconCode = data.list[0].weather[0].icon;
-                    const iconUrl = `https://www.openweathermap.org/img/w/${weatherIconCode}.png`;
-                    const weatherIcon = document.createElement('img');
-                    weatherIcon.src = iconUrl;
-
-                    const iconDiv = document.getElementById ('weather-icon');
-                    iconDiv.innerHTML = '';
-                    iconDiv.appendChild (weatherIcon);
-
-                    forecastItemDiv.appendChild (forecastDate);
-                    forecastItemDiv.appendChild(weatherIcon);
-                    forecastItemDiv.appendChild(forecastTemp);
-                    forecastItemDiv.appendChild(forecastItemDiv);
-
-
-        //             weatherInfo.innerHTML =
-        //                 `<h2>Weather in ${city}</h2>
-        // <p>Temperature ${temperature}F°</p> "`;
-
-        console.log("Weather data updated:");
-
-
-        
-
-                });
-
-        }
-
-        function formatDate (date) {
-
-            const options = {weekday: 'long', hour: numeric};
-        }
-
+                })
 
                 .catch((error) => {
                     console.error('Error getting weather data', error);
@@ -98,8 +45,106 @@ document.addEventListener('DOMContentLoaded', () => {
 
         }
 
+        function displayForecast(forecastData) {
+            forecastContainer.innerHTML = '';
+            const iconDiv = document.getElementById('weather-icon');
+            iconDiv.innerHTML = '';
+
+            const dailyForecasts = {};
+
+            forecastData.forEach((forecastItem) => {
+                const timeStamp = forecastItem.dt;
+                const date = new Date(timeStamp * 1000);
+                const dateKey = formatDate(date);
+
+                if (!dailyForecasts[dateKey]) {
+                    dailyForecasts[dateKey] = {
+                        date: date,
+                        temperatureSum: 0,
+                        temperatureCount: 0,
+                        weatherIcons: []
+                    };
+                }
+
+
+                const temperature = forecastItem.main.temp;
+                const weatherIconCode = forecastItem.weather[0].icon;
+
+                dailyForecasts[dateKey].temperatures.push(temperature);
+                dailyForecasts[dateKey].weatherIcons.push(weatherIconCode);
+
+            });
+
+            for (const dateKey in dailyForecasts) {
+
+                if (dailyForecasts.hasOwnProperty(dateKey)) {
+                    const forecast = dailyForecasts[dateKey];
+                    const averageTemperature = forecast.temperatureSum / forecast.temperatureCount;
+                    const weatherIconCode = getMostCommonWeatherIcon (forecast.weatherIcons);
+                
+            
+
+                const forecastItemDiv = document.createElement('div');
+                forecastItemDiv.className = 'forecast-item';
+
+                const forecastDate = document.createElement('p');
+                forecastDate.textContent = formatDate(date);
+
+                const forecastTemp = document.createElement('p');
+                forecastTemp.textContent = averageTemperature.toFixed(2) + 'F';
+
+                const iconUrl = `https://openweathermap.org/img/wn/${weatherIconCode}.png`;
+                const weatherIcon = document.createElement('img');
+                weatherIcon.src = iconUrl;
+
+            
+                iconDiv.appendChild(weatherIcon);
+
+                forecastItemDiv.appendChild(forecastDate);
+                forecastItemDiv.appendChild(weatherIcon);
+                forecastItemDiv.appendChild(forecastTemp);
+                forecastContainer.appendChild(forecastItemDiv);
+
+
+            }
+
+        }
+
+    }
+
+        function formatDate(date) {
+
+            const options = { weekday: 'long', hour: 'numeric', minute: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        function getMostCommonWeatherIcon (icons) {
+
+            const iconCounts = {};
+            for (const icon of icons) {
+                if (iconCounts[icon]) {
+                    iconCounts[icon]++;
+                    } else {
+                        iconCounts[icon] = 1;
+
+                }
+            }
+    
+            let mostCommonIcon = '';
+            let maxCount = 0
+            for (const icon in iconCounts) {
+                if (iconCounts[icon] > maxCount) {
+                    mostCommonIcon = icon;
+                    maxCount = iconCounts[icon];
+                }
+            }
+
+            return mostCommonIcon;
+        }
 
         getWeather();
 
 
     });
+
+});
