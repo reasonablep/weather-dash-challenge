@@ -30,6 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
             .then((data) => {
 
                 console.log("Data received:", data);
+                document.getElementById('city-name').textContent = cityInput.value;
+
                 const temperature = data.list[0].main.temp;
                 document.getElementById('temperature').textContent = temperature + 'F';
                 let icon = data.list[0].weather[0].icon;
