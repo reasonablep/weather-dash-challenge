@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     let getWeatherButton = document.getElementById('get-weather');
     let cityInput = document.getElementById('city-name');
-    let iconDiv = document.getElementById('weather-icon');
-    let forecastContainer = getWeather('forecast');
+    let weatherContainer = document.getElementById('location')
+    let iconDiv = document.getElementById('conditions');
 
 
 
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const city = cityInput.value;
 
         if (!city) {
-            alert('Please enter a valid city name');
+            throw new Error('Please enter a valid city name');
             return;
         }
         const weatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=c3ae464095c2e4d49982c37fea88fd86&units=imperial`;
@@ -30,40 +30,56 @@ document.addEventListener('DOMContentLoaded', () => {
             .then((data) => {
 
                 console.log("Data received:", data);
-                document.getElementById('city-name').textContent = cityInput.value;
+
+                const cityName = city;
+                let cityNameEl = document.createElement('p')
+                cityNameEl.textContent = cityName;
+                weatherContainer.appendChild(cityNameEl);
 
                 const temperature = data.list[0].main.temp;
-                document.getElementById('temperature').textContent = temperature + 'F';
-                let icon = data.list[0].weather[0].icon;
-                console.log(icon);
+                let tempEl = document.createElement('p');
+                tempEl.textContent = 'Current Temperature: ' + temperature + 'F';
+                iconDiv.appendChild(tempEl);
 
-                    let iconUrl = `https://openweathermap.org/img/wn/${icon}.png`;
-                    let weatherIcon = document.createElement('img');
-                    weatherIcon.src = iconUrl;
-                    console.log(weatherIcon);
-                    iconDiv.appendChild(weatherIcon);
+                for (let i=0; i < 7; i++) {
 
-                    let humidity = data.list[0].main.humidity;
-                    let humidityEl = document.createElement('p');
-                    humidityEl.textContent = humidity + '%';
-                    iconDiv.appendChild(humidityEl);
-                    console.log(humidity);
+                let icon = data.list[i].weather[0].icon;
 
-                    let windSpeed = data.list[0].wind.speed;
-                    let windSpeedEl = document.createElement('p');
-                    windSpeedEl.textContent = windSpeed +'MPH';
-                    iconDiv.append(windSpeedEl);
+                let iconUrl = `https://openweathermap.org/img/wn/${icon}.png`;
 
-                    let timeStamp = data.list[0].dt_txt.split(' ');
-                    console.log(timeStamp);
+                let weatherIcon = document.createElement('img');
+                weatherIcon.src = iconUrl;
 
-                    for (let i = 0; i < timeStamp.length; i += 8) {
-                        let timeStampEl = document.createElement('p');
-                        timeStampEl.textContent  = timeStamp[0];
-                        iconDiv.append(timeStampEl);
-                        
-            
-                    }
+                    
+                    let forecastDate = data.list[i].dt_txt.split(' ');
+                    let dateEl = document.createElement('p');
+                    dateEl.textContent = forecastDate;
+
+    
+    
+                iconDiv.appendChild(dateEl);
+
+                iconDiv.appendChild(weatherIcon);
+
+                }
+
+                let humidity = data.list[0].main.humidity;
+                let humidityEl = document.createElement('p');
+                humidityEl.textContent = 'Humidity: ' + humidity + '%';
+                iconDiv.appendChild(humidityEl);
+                console.log(humidity);
+
+                let windSpeed = data.list[0].wind.speed;
+                let windSpeedEl = document.createElement('p');
+                windSpeedEl.textContent = 'Wind Speed: ' + windSpeed + 'MPH';
+                iconDiv.append(windSpeedEl);
+
+                let timeStamp = data.list[0].dt_txt.split(' ');
+                console.log(timeStamp);
+                let timeStampEl = document.createElement('p');
+                timeStampEl.textContent = timeStamp[0];
+                weatherContainer.append(timeStampEl);
+
 
 
             })
@@ -74,34 +90,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
     }
-    
 
+    getWeatherButton.addEventListener('click', () => {
+        getWeather();
 
-    function displayForecast(forecastData) {
-        
-        let currentDay = 1;
-        currentDay = forecastItem;
-
-        if (currentDay) {
-            forecastItemDiv = document.createElement('div') 
-            forecastItemDiv.classList('.forecast-item');
-            iconDiv.appendChild(forecastItemDiv)
-        }
-    
-        else {
-            currentDay = i++;
-
-        }
-    
-        };
-
-
-        getWeatherButton.addEventListener('click', () => {
-            getWeather();
-            displayForecast();
-
-
-        });
 
     });
-    
+
+});
