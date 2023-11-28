@@ -32,6 +32,10 @@ h1 {
 
 }
 
+.weather-info {
+    margin: 10px;
+}
+
 #get-weather {
 
     padding: 20px;
@@ -70,7 +74,6 @@ h1 {
 
     font-weight: 900;
     background-color: blanchedalmond;
-    display: flex;
     justify-content: space-around;
     margin-bottom: 10px;
 
@@ -83,4 +86,9 @@ h1 {
     padding: 20px;
     margin-top: 20px;
     display: flex;
+}
+
+#forecast-div {
+    display: flex;
+    padding: 10px;
 }

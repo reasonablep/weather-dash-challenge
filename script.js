@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let cityInput = document.getElementById('city-name');
     let weatherContainer = document.getElementById('location')
     let iconDiv = document.getElementById('conditions');
+    let forecastDiv = document.getElementById('forecast-div');
 
 
 
@@ -38,40 +39,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const temperature = data.list[0].main.temp;
                 let tempEl = document.createElement('p');
-                tempEl.textContent = 'Current Temperature: ' + temperature + 'F';
+                tempEl.textContent = 'Current Temperature: ' + temperature + 'F ';
+                tempEl.classList.add('weather-info');
                 iconDiv.appendChild(tempEl);
 
-                for (let i=0; i < 7; i++) {
+                for (let i = 0; i < 39; i+=8) {
 
-                let icon = data.list[i].weather[0].icon;
+                    let icon = data.list[i].weather[0].icon;
 
-                let iconUrl = `https://openweathermap.org/img/wn/${icon}.png`;
+                    let iconUrl = `https://openweathermap.org/img/wn/${icon}.png`;
 
-                let weatherIcon = document.createElement('img');
-                weatherIcon.src = iconUrl;
+                    let weatherIcon = document.createElement('img');
+                    weatherIcon.src = iconUrl;
 
-                    
                     let forecastDate = data.list[i].dt_txt.split(' ');
                     let dateEl = document.createElement('p');
-                    dateEl.textContent = forecastDate;
+                    dateEl.textContent = forecastDate[0];
 
-    
-    
-                iconDiv.appendChild(dateEl);
 
-                iconDiv.appendChild(weatherIcon);
+
+                    forecastDiv.appendChild(dateEl);
+
+                    forecastDiv.appendChild(weatherIcon);
 
                 }
+
+
 
                 let humidity = data.list[0].main.humidity;
                 let humidityEl = document.createElement('p');
                 humidityEl.textContent = 'Humidity: ' + humidity + '%';
+                humidityEl.classList.add('weather-info');
                 iconDiv.appendChild(humidityEl);
-                console.log(humidity);
+            
 
                 let windSpeed = data.list[0].wind.speed;
                 let windSpeedEl = document.createElement('p');
                 windSpeedEl.textContent = 'Wind Speed: ' + windSpeed + 'MPH';
+                windSpeedEl.classList.add('weather-info');
                 iconDiv.append(windSpeedEl);
 
                 let timeStamp = data.list[0].dt_txt.split(' ');
