@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Weather Widget!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 <div class ="container">
     <section class="weather-container">
-        <h1>Peter's Dynamic Weather Service</h1>
+        <h1 class="text-xl">Peter's Dynamic Weather Service</h1>
         <input type="text" id="city-name" placeholder="Enter the city name.">
-        <button id="get-weather">Press to get the weather!</button>
+        <button class="border" id="get-weather">Press to get the weather!</button>
     </section>
     <section class= "weather-data" id = "conditions">
     <div><span id= "location"></span>
         <div id="forecast-div"></div>
     </div>
     </section>
+    <div id="previous-searches"></div>
     </div>
     <script src="script.js"></script>
 </body>

@@ -4,7 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let weatherContainer = document.getElementById('location')
     let iconDiv = document.getElementById('conditions');
     let forecastDiv = document.getElementById('forecast-div');
+    let previousSearches = document.getElementById('previous-searches')
 
+
+    updateSearches();
 
 
 
@@ -43,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 tempEl.classList.add('weather-info');
                 iconDiv.appendChild(tempEl);
 
-                for (let i = 0; i < 39; i+=8) {
+                for (let i = 0; i < 39; i += 8) {
 
                     let icon = data.list[i].weather[0].icon;
 
@@ -71,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 humidityEl.textContent = 'Humidity: ' + humidity + '%';
                 humidityEl.classList.add('weather-info');
                 iconDiv.appendChild(humidityEl);
-            
+
 
                 let windSpeed = data.list[0].wind.speed;
                 let windSpeedEl = document.createElement('p');
@@ -86,6 +89,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 weatherContainer.append(timeStampEl);
 
 
+                //    document.getElementById('previous-searches').setAttribute('href=');
+
+
+                let previousSearchArray = JSON.parse(localStorage.getItem('previousSearches')) || [];
+                if (previousSearchArray.includes(cityName)) {
+                    previousSearchArray.push(cityName);
+                    localStorage.setItem('previousSearches', JSON.stringify(previousSearchArray));
+                }
+
+
+
+
 
             })
 
@@ -96,8 +111,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
+    function updateSearches() {
+        let previousSearchArray = JSON.parse(localStorage.getItem('previousSearches')) || []
+
+
+        previousSearches.innerHTML = '';
+
+        previousSearchArray.forEach(city => {
+            let searchName = document.createElement('h3');
+            searchName.setAttribute('data-city', city);
+            previousSearches.appendChild(searchName);
+
+            searchName.addEventListener('click', () => {
+                cityInput.value = city;
+                getWeather();
+            })
+        });
+    };
+
     getWeatherButton.addEventListener('click', () => {
         getWeather();
+        updateSearches();
 
 
     });
