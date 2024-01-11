@@ -1,25 +1,18 @@
 *{
-
     background-color: lightcyan;
-    
-
 }
 
 h1 {
-
     color:black;
     padding: 10px;
     margin: 0;
 }
 
 .weather-container {
-    align-items: center;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     background-color: white; 
     padding: 20px;
     margin-top: 20px;
-
-
 }
 
 .weather-info {
@@ -27,48 +20,40 @@ h1 {
 }
 
 #get-weather {
-
     padding: 20px;
     width: 200px;
     margin-top: 20px;
-    
 }
 
 #city-name  {
     font-size: large;
     width: 200px;
     padding: 20px 10px;
-
 }
 
 .weather-data {
-
     margin-top: 20px;
     text-align: center;
-
 }
 
 .weather-data {
     background-color: white;
     padding: 20px;
-
 }
 
-#weather-icon img {
+#weather-icon {
     width: 50px; 
-    height : 50px; 
-
+    height : 50px;
+    
 }
 
 #location {
-
     font-weight: 900;
     margin-bottom: 10px;
+    
 }
 
-
 #conditions {
-    background-color: white;
     padding: 20px;
     margin-top: 20px;
 }
