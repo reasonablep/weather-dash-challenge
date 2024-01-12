@@ -67,10 +67,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 humidityEl.textContent = `Humidity: ${humidity}%`;
                 todayForecast.appendChild(humidityEl);
 
+                let wind = data.list[0].wind.speed;
+                windEl = document.createElement('p');
+                windEl.textContent = `Wind Speed: ${wind} MPH`;
+                todayForecast.appendChild(windEl);
+
+
                 let temp = data.list[0].main.temp;
                 let tempEl = document.createElement('p');
                 tempEl.textContent = `Temperature: ${temp} F`;
                 todayForecast.appendChild(tempEl);
+
+                todayForecast.classList.add('border', 'border-4');
 
 
 
@@ -111,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     forecastDiv.appendChild(tempEl);
 
                     let dayDiv = document.createElement('div');
-                    dayDiv.classList.add('flex', 'flex-col', 'items-center', 'border');
+                    dayDiv.classList.add('flex', 'flex-col', 'items-center', 'border-4', 'text-sm');
 
                     dayDiv.appendChild(dateEl);
                     dayDiv.appendChild(weatherIcon);
@@ -147,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         searchBanner = document.createElement('h2');
         searchBanner.textContent = 'Search History';
-        searchBanner.classList.add('text-md', 'border', 'rounded-md', 'border-black', 'max-w-md', 'mb-5', 'font-bold');
+        searchBanner.classList.add('text-md', 'border', 'rounded-md', 'border-black', 'max-w-md', 'mb-5', 'font-bold', 'ml-5');
         previousSearches.appendChild(searchBanner);
 
         previousSearchArray.forEach(city => {
