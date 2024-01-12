@@ -59,7 +59,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 let icon = data.list[0].weather[0].icon;
                 let iconUrl = `https://openweathermap.org/img/wn/${icon}.png`;
                 todayIcon.src = iconUrl;
+                todayIcon.classList.add('w-20', 'h-20');
                 todayForecast.appendChild(todayIcon);
+
+                let humidity = data.list[0].main.humidity;
+                let humidityEl = document.createElement('p');
+                humidityEl.textContent = `Humidity: ${humidity}%`;
+                todayForecast.appendChild(humidityEl);
+
+                let temp = data.list[0].main.temp;
+                let tempEl = document.createElement('p');
+                tempEl.textContent = `Temperature: ${temp} F`;
+                todayForecast.appendChild(tempEl);
+
 
 
 // For loop to create foreacst elements
@@ -94,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const temperature = data.list[i].main.temp;
                     let tempEl = document.createElement('p');
-                    tempEl.textContent = 'Current Temperature: ' + temperature + 'F ';
+                    tempEl.textContent = 'Current Temperature: ' + temperature + ' F ';
                     tempEl.classList.add('weather-info');
                     forecastDiv.appendChild(tempEl);
 

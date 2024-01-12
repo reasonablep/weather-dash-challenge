@@ -13,18 +13,18 @@
     <div>
         <section class="weather-container flex">
             <div class="search-box">
-                <h1 class="text-xl font-bold">Peter's Dynamic Weather Service</h1>
+                <h1 class="text-2xl font-bold tracking-wider">Peter's OpenWeather API Dashboard</h1>
                 <br>
                 <p class="font-bold">Search by city name:</p>
-                <input type="text" id="city-name" placeholder="Enter the city name.">
-                <button class="border border-black" id="get-weather">Press to get the weather!</button>
+                <input class="border border-black" type="text" id="city-name" placeholder="Enter the city name">
+                <button class="border border-black bg-slate-100 rounded-md" id="get-weather">Get weather</button>
             </div>
-            <div id="today-forecast"></div>
+            <div class = "border flex flex-col justify-end" id="today-forecast"></div>
         </section>
 
         <section class="weather-data flex flex-row border" id="conditions">
+            <div class = "mr-5" id="previous-searches"></div>
             <div><span class="flex flex-row" id="location"></span>
-                <div id="previous-searches"></div>
                 <div class="grid grid-cols-5 gap-4" id="forecast-div"></div>
             </div>
         </section>
