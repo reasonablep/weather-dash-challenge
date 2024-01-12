@@ -8,16 +8,20 @@ This is a JavaScript API-driven weather generating website, which takes a city a
 ## Table of Contents
 
 - [Installation](#installation)
+- [Images](#Images)
 - [Usage](#usage)
 - [Usage](#usage)
 - [License](#license)
 - [Contributing](#contributing)
-- [Tests](#tests)
 - [Questions](#questions)
 
   
 ## Installation
-The site requires a browser and a valid city name only to use.
+The site requires a browser and a valid city name only to use. The site will provide a forecast for that day, and a 5-day projected forecast with the same pieces of data for that city. The site also saves previously searched cities in local storage and retrieves them upon clicking the button for the city name.
+
+![Screenshot-Home](/IMG/WeatherScreenshot1.png)
+
+![Screenshot-Forecast](/IMG/WeatherScreenshot2.png)
 
 ## Usage
 Upon accessing the site, enter a valid city name into the search box, and click 'get weather' to generate the weather with a 5-day forecast and current conditions.
@@ -35,9 +39,6 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 
 ## Contributing
 Reach out to the developer at the email address below.
-
-## Tests
-Use JEST or other testing suite in NPM.
 
 ## Questions
 For questions about this project, please reach out to me on GitHub, https://github/reasonablep or via e-mail at, pmrtnz@me.com. Thanks for reading. 
